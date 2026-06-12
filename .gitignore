@@ -1,0 +1,23 @@
+# Local environment and secret files (Never commit these!)
+.env
+.env.local
+*.env
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Common log files and caches
+*.log
+npm-debug.log*
+yarn-debug.log*
+.eslintcache
+
+# Common build and dependency folders
+node_modules/
+dist/
+build/
+target/
+bin/
+obj/
+.env

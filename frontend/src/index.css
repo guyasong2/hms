@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans bg-slate-50 text-slate-800 min-h-screen;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* ── Buttons ─────────────────────────────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium
+           transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed select-none;
+  }
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800
+           focus-visible:ring-primary-500 shadow-sm;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-slate-700 border border-slate-200 hover:bg-slate-50
+           active:bg-slate-100 focus-visible:ring-slate-400 shadow-sm;
+  }
+  .btn-danger {
+    @apply btn bg-danger text-white hover:bg-red-700 active:bg-red-800
+           focus-visible:ring-red-400 shadow-sm;
+  }
+  .btn-ghost {
+    @apply btn text-slate-600 hover:bg-slate-100 active:bg-slate-200;
+  }
+  .btn-lg {
+    @apply px-6 py-3 text-base rounded-xl;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs rounded-md;
+  }
+
+  /* ── Cards ──────────────────────────────────────────────────────────────── */
+  .card {
+    @apply bg-white rounded-xl shadow-card border border-slate-100 p-6;
+  }
+  .card-hover {
+    @apply card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 cursor-pointer;
+  }
+
+  /* ── Form fields ─────────────────────────────────────────────────────────── */
+  .form-label {
+    @apply block text-sm font-medium text-slate-700 mb-1.5;
+  }
+  .form-input {
+    @apply w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800
+           placeholder:text-slate-400 transition-colors duration-150
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+           disabled:bg-slate-50 disabled:cursor-not-allowed;
+  }
+  .form-input-error {
+    @apply form-input border-danger focus:ring-danger;
+  }
+  .form-error {
+    @apply text-xs text-danger mt-1;
+  }
+  .form-select {
+    @apply form-input cursor-pointer appearance-none bg-no-repeat;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2364748b'%3E%3Cpath fill-rule='evenodd' d='M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+  }
+
+  /* ── Badges ─────────────────────────────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+  .badge-blue   { @apply badge bg-primary-100 text-primary-700; }
+  .badge-green  { @apply badge bg-success-light text-success; }
+  .badge-yellow { @apply badge bg-warning-light text-warning; }
+  .badge-red    { @apply badge bg-danger-light text-danger; }
+  .badge-slate  { @apply badge bg-slate-100 text-slate-600; }
+
+  /* ── Page wrapper ────────────────────────────────────────────────────────── */
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+
+  /* ── Section heading ─────────────────────────────────────────────────────── */
+  .section-title {
+    @apply text-2xl font-bold text-slate-900;
+  }
+  .section-subtitle {
+    @apply text-slate-500 mt-1;
+  }
+
+  /* ── Spinner ─────────────────────────────────────────────────────────────── */
+  .spinner {
+    @apply w-5 h-5 rounded-full border-2 border-slate-200 border-t-primary-600 animate-spin;
+  }
+
+  /* ── Divider ─────────────────────────────────────────────────────────────── */
+  .divider {
+    @apply border-t border-slate-100 my-6;
+  }
+
+  /* ── Stat card ───────────────────────────────────────────────────────────── */
+  .stat-card {
+    @apply card flex items-center gap-4;
+  }
+  .stat-icon {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .ring-offset-white { --tw-ring-offset-color: #fff; }
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { @apply bg-transparent; }
+::-webkit-scrollbar-thumb { @apply bg-slate-300 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-slate-400; }
+
+/* ── Toaster override ────────────────────────────────────────────────────────── */
+.react-hot-toast { font-family: 'Inter', sans-serif !important; font-size: 0.875rem !important; }
