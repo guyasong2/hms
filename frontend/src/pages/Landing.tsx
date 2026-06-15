@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import api from '../lib/api';
 import { ArrowRight, Shield, Clock, Smartphone, Star, Activity } from 'lucide-react';
 import DoctorCard, { DoctorCardProps } from '../components/DoctorCard';
-
+import heroImage from '../assets/hero-image.jpg';
 const FEATURES = [
   { icon: <Shield size={20} />, title: 'Secure & Private', desc: 'All your health data is encrypted and never shared without your consent.' },
   { icon: <Clock size={20} />, title: 'Book Instantly', desc: 'Choose from hundreds of available slots and confirm your appointment in seconds.' },
@@ -31,31 +31,42 @@ export default function Landing() {
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-400 opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm mb-6 backdrop-blur-sm">
-              <Activity size={14} className="text-primary-300" />
-              <span className="text-white/80">Trusted by 10,000+ patients in Cameroon</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm mb-6 backdrop-blur-sm">
+                <Activity size={14} className="text-primary-300" />
+                <span className="text-white/80">Trusted by 10,000+ patients in Cameroon</span>
+              </div>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-balance">
+                Healthcare Made <span className="text-primary-300">Simple</span> and Accessible
+              </h1>
+              <p className="mt-6 text-lg text-white/70 max-w-xl leading-relaxed">
+                Find and consult with top doctors online. Book appointments, pay with MTN or Orange Mobile Money, and take control of your health — all from one platform.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link to="/doctors" className="btn btn-lg bg-white text-primary-700 hover:bg-primary-50 font-semibold shadow-lg">
+                  Find a Doctor <ArrowRight size={18} />
+                </Link>
+                <Link to="/register" className="btn btn-lg bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur-sm font-medium">
+                  Create Free Account
+                </Link>
+              </div>
+              <div className="mt-12 flex items-center gap-6 text-sm text-white/60">
+                <span className="flex items-center gap-1.5"><Star size={14} className="text-amber-400 fill-amber-400" /> 4.9/5 average rating</span>
+                <span>·</span>
+                <span>50+ specialist doctors</span>
+                <span>·</span>
+                <span>Available 6 days a week</span>
+              </div>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-balance">
-              Healthcare Made <span className="text-primary-300">Simple</span> and Accessible
-            </h1>
-            <p className="mt-6 text-lg text-white/70 max-w-xl leading-relaxed">
-              Find and consult with top doctors online. Book appointments, pay with MTN or Orange Mobile Money, and take control of your health — all from one platform.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link to="/doctors" className="btn btn-lg bg-white text-primary-700 hover:bg-primary-50 font-semibold shadow-lg">
-                Find a Doctor <ArrowRight size={18} />
-              </Link>
-              <Link to="/register" className="btn btn-lg bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur-sm font-medium">
-                Create Free Account
-              </Link>
-            </div>
-            <div className="mt-12 flex items-center gap-6 text-sm text-white/60">
-              <span className="flex items-center gap-1.5"><Star size={14} className="text-amber-400 fill-amber-400" /> 4.9/5 average rating</span>
-              <span>·</span>
-              <span>50+ specialist doctors</span>
-              <span>·</span>
-              <span>Available 6 days a week</span>
+
+            <div className="hidden lg:block relative">
+              <div className="absolute inset-0 bg-primary-400/20 rounded-3xl blur-2xl transform rotate-3"></div>
+              <img 
+                src={heroImage} 
+                alt="Medical professional using laptop" 
+                className="relative rounded-3xl shadow-2xl border border-white/10 object-cover w-full h-[500px]"
+              />
             </div>
           </div>
         </div>
