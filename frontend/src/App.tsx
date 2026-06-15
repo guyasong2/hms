@@ -11,6 +11,7 @@ import DashboardWrapper from './pages/DashboardWrapper';
 import ProfileSettings from './pages/ProfileSettings';
 import AdminDashboard from './pages/AdminDashboard';
 import PaymentStatus from './pages/PaymentStatus';
+import DoctorSchedule from './pages/DoctorSchedule';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode; roles?: string[] }> = ({ children, roles }) => {
   const { user, isLoading } = useAuth();
@@ -46,6 +47,7 @@ function AppRoutes() {
         {/* Patient only */}
         <Route path="dashboard" element={<ProtectedRoute roles={['PATIENT', 'DOCTOR']}><DashboardWrapper /></ProtectedRoute>} />
         <Route path="profile" element={<ProtectedRoute roles={['PATIENT', 'DOCTOR']}><ProfileSettings /></ProtectedRoute>} />
+        <Route path="doctor/schedule" element={<ProtectedRoute roles={['DOCTOR']}><DoctorSchedule /></ProtectedRoute>} />
         <Route path="book/:doctorId" element={<ProtectedRoute roles={['PATIENT']}><Booking /></ProtectedRoute>} />
         <Route path="payment/:status" element={<ProtectedRoute roles={['PATIENT']}><PaymentStatus /></ProtectedRoute>} />
 

@@ -15,6 +15,6 @@ router.get('/:id', doctorController.getDoctorById);
 router.post('/', authenticate, requireRole('ADMIN'), validate(createDoctorSchema), doctorController.createDoctor);
 router.post('/:id/slots', authenticate, requireRole('ADMIN', 'DOCTOR'), validate(addSlotsSchema), doctorController.addSlots);
 router.get('/:id/stats', authenticate, requireRole('ADMIN', 'DOCTOR'), doctorController.getDoctorStats);
-
+router.delete('/:id/slots/:slotId', authenticate, requireRole('ADMIN', 'DOCTOR'), doctorController.deleteSlot);
 
 export default router;

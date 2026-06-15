@@ -36,9 +36,14 @@ export default function DoctorDashboard() {
           <h1 className="section-title text-3xl">Hello, Dr. {user?.doctor?.lastName} 👋</h1>
           <p className="section-subtitle">Welcome to your professional dashboard</p>
         </div>
-        <Link to="/profile" className="btn btn-primary shadow-md">
-           Manage Profile
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Link to="/doctor/schedule" className="btn btn-outline shadow-sm flex items-center gap-2">
+            <Calendar size={16} /> Manage Schedule
+          </Link>
+          <Link to="/profile" className="btn btn-primary shadow-md">
+            Manage Profile
+          </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">

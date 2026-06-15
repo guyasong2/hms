@@ -64,7 +64,7 @@ export const createDoctor = async (input: CreateDoctorInput) => {
   if (existing) throw new AppError('Email already in use', 409);
 
   const passwordHash = await hashPassword(input.password);
-  
+
   const { data: user, error: userError } = await supabase.from('User').insert({
     email: input.email,
     passwordHash,
@@ -127,7 +127,7 @@ export const getDoctorStats = async (doctorId: string) => {
       .from('Payment')
       .select('amount, appointmentId')
       .eq('status', 'SUCCEEDED');
-      
+
     if (payments) {
       const { data: appointments } = await supabase.from('Appointment').select('id').eq('doctorId', doctorId);
       const apptIds = new Set((appointments || []).map(a => a.id));
@@ -135,10 +135,30 @@ export const getDoctorStats = async (doctorId: string) => {
     }
   }
 
-  return { 
-    total: totalRes.count || 0, 
-    confirmed: confirmedRes.count || 0, 
-    pending: pendingRes.count || 0, 
-    revenue 
+  return {
+    total: totalRes.count || 0,
+    confirmed: confirmedRes.count || 0,
+    pending: pendingRes.count || 0,
+    revenue
   };
+};
+
+export const deleteTimeSlot = async (doctorId: string, slotId: string) => {
+  const { data: slot, error: fetchError } = await supabase
+    .from('TimeSlot')
+    .select('*')
+    .eq('id', slotId)
+    .eq('doctorId', doctorId)
+    .maybeSingle();
+
+  if (fetchError || !slot) throw new AppError('Time slot not found or unauthorized', 404);
+  if (slot.isBooked) throw new AppError('Cannot delete a booked time slot', 400);
+
+  const { error: deleteError } = await supabase
+    .from('TimeSlot')
+    .delete()
+    .eq('id', slotId);
+
+  if (deleteError) throw new AppError('Failed to delete time slot', 500);
+  return { message: 'Time slot deleted successfully' };
 };

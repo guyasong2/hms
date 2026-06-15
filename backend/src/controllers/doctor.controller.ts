@@ -30,3 +30,8 @@ export const getDoctorStats = asyncHandler(async (req: AuthRequest, res: Respons
   const stats = await doctorService.getDoctorStats(doctorId);
   res.status(200).json({ success: true, data: stats });
 });
+
+export const deleteSlot = asyncHandler(async (req: AuthRequest, res: Response) => {
+  const result = await doctorService.deleteTimeSlot(req.params.id, req.params.slotId);
+  res.status(200).json({ success: true, data: result });
+});
